@@ -8,7 +8,7 @@ La ecología matemática es una disciplina rápidamente cambiante  y en expansi�
 
 Los modelos de Lotka-Volterra, que datan de principios del siglo XX, constituyen la piedra angular de la ecología teórica, ofreciendo una visión simplificada pero poderosa de la dinámica predator-presa. A pesar de su simplicidad, estos modelos han inspirado décadas de investigación, extendiéndose para incluir competencia interspecífica, mutualismo y otros tipos de interacciones biológicas. Un curso de posgrado debe no solo enseñar la matemática subyacente de estos modelos, sino también incitar a los estudiantes a reflexionar sobre su relevancia en un mundo que ha cambiado drásticamente desde su concepción.
 
-$\dot x_i=r_ix_i+ \sum_{j=1}^N M_{ij}x_jx_i$
+$\dot x_i=r_ix_i+ \Sigma_{j=1}^N M_{ij}x_jx_i$
 
 ## Modelos de consumidores de recursos
 Los modelos de recursos consumidor avanzan más allá de la dinámica predator-presa para considerar cómo la explotación de recursos afecta la dinámica de las poblaciones y las comunidades. Estos modelos son esenciales para entender procesos ecológicos como la competencia, la coexistencia y el colapso de poblaciones. Su estudio en el posgrado debe incluir tanto su base teórica como aplicaciones prácticas, como la gestión de recursos naturales y la conservación de especies.
