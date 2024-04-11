@@ -1,0 +1,84 @@
+---
+title: "Ecología Matemática"
+author: "Roberto Álvarez"
+format:
+  revealjs:
+    menu:
+      side: right
+      width: wide
+---
+
+## Colonización de la microbiota
+
+![Ejemplo 1](01_Images/Murinemicrobiota.png){width="736"}
+
+## Secuenciación 16S
+
+![](01_Images/pnas.1311322111fig01.jpeg){fig-align="center"}
+
+## Dinámica
+
+![](01_Images/pnas.1311322111fig02.jpeg){fig-align="center"}
+
+## Red de interacciones
+
+![](01_Images/pnas.1311322111fig03.jpeg){fig-align="center"}
+
+## Interacciones
+
+![](01_Images/pnas.1311322111fig04.jpeg){fig-align="center"}
+
+## El modelo
+
+![](01_Images/pnas.1311322111uneq1.jpeg){fig-align="center"}
+
+## Resultados
+
+![](01_Images/Captura%20de%20Pantalla%202024-03-21%20a%20la(s)%2014.08.55.png){fig-align="center"}
+
+## Resultados
+
+![](01_Images/Captura%20de%20Pantalla%202024-03-21%20a%20la(s)%2014.09.11.png){fig-align="center"}
+
+## Limitaciones del modelo gL-V
+
+-   Las interacciones son estáticas: tiempo y espacio
+
+-   Los ciclos de retroalimentación positivos conducen a que la población crezca sin control
+
+-   La dinámica está gobernada solo por interacciones por pares
+
+-   No toma en cuenta procesos estocásticos (deriva génica o fluctuaciones ambientales)
+
+-   No se consideran interacciones mediadas por moléculas pequeñas como intercambio de metabolitos o *quorom sensing*.
+
+## Cómo superar esas limitaciones
+
+-   Más parámetros:
+
+    1.  Funciones de saturación para modelar escenarios mutualistas
+
+    2.  El signo efectivo de las interacciones podría variar con respecto al tiempo
+
+    3.  Se pueden agregar interacciones de orden más alto
+
+## ¿Qué podemos obtener de modelos Lotka-Volterra?
+
+1.  Entendimiento *grosso modo* cuando no se pueden medir rasgos de las especies
+2.  gL-V y sus adapataciones modelan diversidad de la comunidad, co-existencia estable y multiestabilidad
+
+## El velero Tara
+
+<center>
+
+<iframe width="907" height="570" src="https://www.youtube.com/embed/4YiaI1ZVWuE?si=db7Mv4qPj7hb1JHr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+
+</iframe>
+
+</center>
+
+## Artículos en Science
+
+![](01_Images/science.2015.348.issue-6237.largecover.jpg)
+
+## Modelos de consumidores de recursos de MacArthur

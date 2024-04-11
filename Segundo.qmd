@@ -1,0 +1,169 @@
+---
+title: "Ecología Matemática"
+author: "Roberto Álvarez"
+#format: html
+format:
+  revealjs:
+    menu:
+      side: right
+      width: wide
+---
+## Colonización de la microbiota
+
+![Ejemplo 1](01_Images/Murinemicrobiota.png){width="736"}
+
+## Secuenciación 16S
+
+![](01_Images/pnas.1311322111fig01.jpeg){fig-align="center"}
+
+## Dinámica
+
+![](01_Images/pnas.1311322111fig02.jpeg){fig-align="center"}
+
+## Red de interacciones
+
+![](01_Images/pnas.1311322111fig03.jpeg){fig-align="center"}
+
+## Interacciones
+
+![](01_Images/pnas.1311322111fig04.jpeg){fig-align="center"}
+
+## El modelo
+
+![](01_Images/pnas.1311322111uneq1.jpeg){fig-align="center"}
+
+## Resultados
+
+![](01_Images/Captura%20de%20Pantalla%202024-03-21%20a%20la(s)%2014.08.55.png){fig-align="center"}
+
+## Resultados
+
+![](01_Images/Captura%20de%20Pantalla%202024-03-21%20a%20la(s)%2014.09.11.png){fig-align="center"}
+
+
+## Limitaciones del modelo gL-V
+
+-   Las interacciones son estáticas: tiempo y espacio
+
+-   Los ciclos de retroalimentación positivos conducen a que la población crezca sin control
+
+-   La dinámica está gobernada solo por interacciones por pares
+
+-   No toma en cuenta procesos estocásticos (deriva génica o fluctuaciones ambientales)
+
+-   No se consideran interacciones mediadas por moléculas pequeñas como intercambio de metabolitos o *quorom sensing*.
+
+
+## Cómo superar esas limitaciones
+
+-   Más parámetros:
+
+    1.  Funciones de saturación para modelar escenarios mutualistas
+
+    2.  El signo efectivo de las interacciones podría variar con respecto al tiempo
+
+    3.  Se pueden agregar interacciones de orden más alto
+
+
+## Qué podemos obtener de modelos Lotka-Volterra
+
+1.  Entendimiento *grosso modo* cuando no se pueden medir rasgos de las especies
+2.  gL-V y sus adapataciones modelan diversidad de la comunidad, co-existencia estable y multiestabilidad
+
+
+# Lotka-Volterra
+
+$$\frac{dx(t)}{dt}=D(x(t))(r + Ax(t))$$
+
+## Lotka-Volterra generalizado
+
+```{r}
+source("code/general_code.R")
+# load interesting parameters
+load("code/four_spp_cycle.RData")
+A <- limit_cycle_4spp$A
+r <- limit_cycle_4spp$r
+set.seed(1) # for reproducibility
+dynamics <- GLV_dynamics(A = A, 
+                         r = r,
+                         maxtime = 150)
+show(plot_dynamics(dynamics))
+```
+
+## Encontrar el equilibrio
+
+$$r + Ax=0$$
+$$Ax*=-r$$
+$$x*=-A^{-1}r$$
+
+
+## Encontrar equilibrio
+
+```{r}
+# find feasible equilibrium for the example above
+solve(A, -r)
+```
+
+
+## Estabilidad local del equilibrio en co-existencia
+
+![](01_Images/Captura de Pantalla 2024-04-11 a la(s) 14.03.48.png)
+
+## Encontrar los eigenvalores
+```{r}
+# build the community matrix
+x_star <- solve(A, -r)
+M <- diag(x_star) %*% A
+eigen(M, only.values = TRUE)$values %>% 
+  round(2)
+```
+## El equilibrio es el promedio
+
+```{r}
+dynamics$ts %>% 
+  filter(time > 50) %>% 
+  group_by(species) %>% 
+  summarize(density = mean(density)) %>% 
+  select(density) %>% t() %>% as.numeric()
+```
+
+
+## El velero Tara
+
+<center>
+
+<iframe width="907" height="570" src="https://www.youtube.com/embed/4YiaI1ZVWuE?si=db7Mv4qPj7hb1JHr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+
+</iframe>
+
+</center>
+
+
+## Artículos en Science
+
+<center>![](01_Images/science.2015.348.issue-6237.largecover.jpg)</center>
+
+
+
+## El microbioma marino
+
+![](01_Images/Captura de Pantalla 2024-04-11 a la(s) 13.32.21.png)
+
+
+
+## El microbioma marino
+
+![](01_Images/Captura de Pantalla 2024-04-11 a la(s) 13.33.51.png)
+
+## La expedición del Tara
+
+![](01_Images/Captura de Pantalla 2024-04-11 a la(s) 13.39.46.png)
+
+## El muestreo
+
+![](01_Images/Captura de Pantalla 2024-04-11 a la(s) 13.42.17.png)
+
+## 
+
+## Modelos de consumidores de recursos de MacArthur
+
