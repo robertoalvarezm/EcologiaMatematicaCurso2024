@@ -122,9 +122,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="math display">\[\mathbf r + \mathcal A \mathbf x = \begin{bmatrix} r_1 \\ r_2 \\ r_3 \\ \vdots \\ r_n \end{bmatrix} +  \begin{bmatrix}a_{11}x_1(t) + a_{12}x_2(t) + a_{13}x_3(t) + \ldots + a_{1n}x_n(t) \\a_{21}x_1(t) + a_{22}x_2(t) + a_{23}x_3(t) + \ldots + a_{2n}x_n(t) \\ a_{31}x_1(t) + a_{32}x_2(t) + a_{33}x_3(t) + \ldots + a_{3n}x_n(t) \\ \vdots  \\ a_{n1}x_1(t) + a_{n2}x_2(t) + a_{n3}x_3(t) + \ldots + a_{nn}x_n(t)\end{bmatrix} \]</span> Finalmente sumamos ambos vectores columnas <span class="math inline">\(\mathbf r\)</span> y <span class="math inline">\(\mathcal A \mathbf x\)</span> tenemos:</p>
 <p><span class="math display">\[\mathbf r + \mathcal A \mathbf x =  \begin{bmatrix} r_1 + a_{11}x_1(t) + a_{12}x_2(t) + a_{13}x_3(t) + \ldots + a_{1n}x_n(t) \\ r_2 + a_{21}x_1(t) + a_{22}x_2(t) + a_{23}x_3(t) + \ldots + a_{2n}x_n(t)  \\ r_3  + a_{31}x_1(t) + a_{32}x_2(t) + a_{33}x_3(t) + \ldots + a_{3n}x_n(t) \\ \vdots \\ r_n +a_{n1}x_1(t) + a_{n2}x_2(t) + a_{n3}x_3(t) + \ldots + a_{nn}x_n(t)  \end{bmatrix}\]</span> Finalmente hacemos el producto de la matriz <span class="math inline">\(\mathcal D (\mathbf x)\)</span> con el vector <span class="math inline">\(\mathbf r + \mathcal A \mathbf x\)</span></p>
 <p><span class="math display">\[\mathcal D (\mathbf x)(\mathbf r + \mathcal A \mathbf x) = \begin{pmatrix}x_1(t) &amp; 0 &amp; 0 &amp; \ldots &amp; 0 \\0 &amp; x_2(t) &amp; 0 &amp; \ldots &amp; 0 \\ \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots \\ 0 &amp; 0 &amp; 0 &amp; \ldots &amp; x_n(t)\end{pmatrix} \begin{bmatrix} r_1 + a_{11}x_1(t) + a_{12}x_2(t) + a_{13}x_3(t) + \ldots + a_{1n}x_n(t) \\ r_2 + a_{21}x_1(t) + a_{22}x_2(t) + a_{23}x_3(t) + \ldots + a_{2n}x_n(t)  \\ r_3  + a_{31}x_1(t) + a_{32}x_2(t) + a_{33}x_3(t) + \ldots + a_{3n}x_n(t) \\ \vdots \\ r_n +a_{n1}x_1(t) + a_{n2}x_2(t) + a_{n3}x_3(t) + \ldots + a_{nn}x_n(t)  \end{bmatrix}\]</span></p>
+<p>Finalmente:</p>
+<p><span class="math display">\[ \begin{bmatrix} r_1x_1(t) + a_{11}x_1^2(t) + a_{12}x_2(t)x_1(t) + a_{13}x_3(t)x_1(t) + \ldots + a_{1n}x_n(t)x_1(t) \\ r_2x_2(t) + a_{21}x_1(t)x_2(t) + a_{22}x_2^2(t) + a_{23}x_3(t)x_2(t) + \ldots + a_{2n}x_n(t)x_2(t)  \\ r_3x_3(t)  + a_{31}x_1(t)x_3(t) + a_{32}x_2(t)x_3(t) + a_{33}x_3^2(t) + \ldots + a_{3n}x_n(t)x_3(t) \\ \vdots \\ r_nx_n(t) +a_{n1}x_1(t)x_n(t) + a_{n2}x_2(t)x_n(t) + a_{n3}x_3(t) + \ldots + a_{nn}x_n^2(t)  \end{bmatrix}\]</span></p>
 </section>
 <section id="para-1-d" class="level2">
 <h2 class="anchored" data-anchor-id="para-1-d">Para 1-D</h2>
+<p><span class="math display">\[\frac{dx}{dt}=x(t)(r +ax(t))\]</span> La solución no trivial es:</p>
+<p><span class="math display">\[\frac{dx}{dt}=x^*(r +ax^*)=0\]</span> <span class="math display">\[r +ax^*=0\]</span> <span class="math display">\[x =-\frac{r}{a}\]</span> con <span class="math inline">\(a&lt;0\)</span> la solución es positiva</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(deSolve) <span class="co"># integrate ODEs</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># plotting and wrangling</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -170,6 +174,62 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
+<section id="dinámicas-lotka-volterra" class="level2">
+<h2 class="anchored" data-anchor-id="dinámicas-lotka-volterra">Dinámicas Lotka-Volterra</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generalized Lotka-Volterra model</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>GLV <span class="ot">&lt;-</span> <span class="cf">function</span>(t, x, parameters){</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">as.list</span>(<span class="fu">c</span>(x, parameters)), {</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    x[x <span class="sc">&lt;</span> <span class="dv">10</span><span class="sc">^-</span><span class="dv">8</span>] <span class="ot">&lt;-</span> <span class="dv">0</span> <span class="co"># prevent numerical problems</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    dxdt <span class="ot">&lt;-</span> x <span class="sc">*</span> (r <span class="sc">+</span> A <span class="sc">%*%</span> x)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(dxdt)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># function to plot output</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>plot_ODE_output <span class="ot">&lt;-</span> <span class="cf">function</span>(out){</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(out)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colnames</span>(out) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"time"</span>, <span class="fu">paste</span>(<span class="st">"sp"</span>, <span class="dv">1</span><span class="sc">:</span>(<span class="fu">ncol</span>(out) <span class="sc">-</span><span class="dv">1</span>), <span class="at">sep =</span> <span class="st">"_"</span>))</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(out) <span class="sc">%&gt;%</span> <span class="fu">gather</span>(species, density, <span class="sc">-</span>time)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  pl <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> out) <span class="sc">+</span> </span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> density, <span class="at">colour =</span> species) <span class="sc">+</span> </span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>()</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">show</span>(pl)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(out)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co"># general function to integrate GLV</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>integrate_GLV <span class="ot">&lt;-</span> <span class="cf">function</span>(r, A, x0, <span class="at">maxtime =</span> <span class="dv">100</span>, <span class="at">steptime =</span> <span class="fl">0.5</span>){</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  times <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, maxtime, <span class="at">by =</span> steptime)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  parameters <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">r =</span> r, <span class="at">A =</span> A)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># solve numerically</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> <span class="fu">ode</span>(<span class="at">y =</span> x0, <span class="at">times =</span> times, </span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>           <span class="at">func =</span> GLV, <span class="at">parms =</span> parameters, </span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>           <span class="at">method =</span> <span class="st">"ode45"</span>)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># plot and make into tidy form</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> <span class="fu">plot_ODE_output</span>(out)</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(out)</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="competencia-que-conduce-a-la-extinción-de-especies" class="level3">
+<h3 class="anchored" data-anchor-id="competencia-que-conduce-a-la-extinción-de-especies">Competencia que conduce a la extinción de especies</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>) <span class="co"># for reproducibility</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>r_1 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">3</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>A_1 <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">9</span>, <span class="dv">5</span>, </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                 <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">9</span>, </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                 <span class="dv">5</span>, <span class="dv">9</span>, <span class="dv">10</span>), <span class="dv">3</span>, <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># check the existence of feasible equilibrium</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">solve</span>(A_1, <span class="sc">-</span>r_1)) <span class="co"># not feasible</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.08333333  0.25000000 -0.08333333</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x0_1 <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">3</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>res_1 <span class="ot">&lt;-</span> <span class="fu">integrate_GLV</span>(r_1, A_1, x0_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Calculos_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
 <section id="quarto" class="level2">
 <h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
 <p>Quarto enables you to weave together content and executable 😃 code into a finished document. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>.</p>
@@ -178,7 +238,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="running-code">Running Code</h2>
 <p>When you click the <strong>Render</strong> button a document will be generated that includes both content and the output of embedded code. You can embed code like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
