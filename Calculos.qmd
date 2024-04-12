@@ -1,7 +1,12 @@
 ---
 title: "Cálculos"
 author: "Roberto Álvarez"
-format: html
+#format: html
+format:
+  pdf:
+    toc: true
+    number-sections: true
+    colorlinks: true
 ---
 
 ## Ecuación Lotka-Volterra
