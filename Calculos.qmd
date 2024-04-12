@@ -6,29 +6,81 @@ format: html
 
 ## Ecuación Lotka-Volterra
 
-## $$\frac{dx_i}{dt}=r_ix_i+\sum_{j=1}^nA_{ij}x_ix_j$$ $$\forall i=1,2,3,\ldots n$$ $$\frac{dx_i}{dt}=x_i(r_i+\sum_{j=1}^nA_{ij}x_j)$$ Lotka-Volterra en forma vectorial
+$$\frac{dx_i}{dt}=r_ix_i+\sum_{j=1}^nA_{ij}x_ix_j$$ $$\forall i=1,2,3,\ldots n$$ $$\frac{dx_i}{dt}=x_i(r_i+\sum_{j=1}^nA_{ij}x_j)$$ 
+## Lotka-Volterra en forma vectorial
 
 $$\frac{d \mathbf x}{dt}=D(\mathbf {x})(\mathbf{r}+ \mathcal A\mathbf{x})$$
 
-con
+con el vector de abundancias de las poblaciones
 
-$\mathbf x(t)=(x_1(t),x_2(t),\ldots, x_n(t))$
+$\mathbf x(t)=\begin{bmatrix} x_1(t) \\ x_2(t) \\ x_3(t) \\ \vdots \\ x_n(t) \end{bmatrix}$
 
 $D(\mathbf {x})= \begin{pmatrix}x_1(t) & 0 & 0 & \ldots & 0 \\0 & x_2(t) & 0 & \ldots & 0 \\ \vdots & \vdots & \vdots & \vdots & \vdots \\ 0 & 0 & 0 & \ldots & x_n(t)\end{pmatrix}$
 
 El vector de tasas de crecimiento
 
-$\mathbf r=(r_1,r_2,\ldots, r_n)$
+$\mathbf r=\begin{bmatrix} r_1 \\ r_2 \\ r_3 \\ \vdots \\ r_n \end{bmatrix}$
 
 La matriz de interacciones
 
 $\mathcal A= \begin{pmatrix}a_{11} & a_{12} & a_{13} & \ldots & a_{1n} \\a_{21} & a_{22} & a_{23} & \ldots & a_{2n} \\ \vdots & \vdots & \vdots & \vdots & \vdots \\ a_{n1} & a_{n2} & a_{n3} & \ldots & a_{nn}\end{pmatrix}$
 
+## Demostración de ambas ecuaciones
+Entonces la parte $\mathbf r + \mathcal A \mathbf x$ es un vector columna
+
+$$\mathbf r + \mathcal A \mathbf x= \begin{bmatrix} r_1 \\ r_2 \\ r_3 \\ \vdots \\ r_n \end{bmatrix} +  \begin{pmatrix}a_{11} & a_{12} & a_{13} & \ldots & a_{1n} \\a_{21} & a_{22} & a_{23} & \ldots & a_{2n} \\ \vdots & \vdots & \vdots & \vdots & \vdots \\ a_{n1} & a_{n2} & a_{n3} & \ldots & a_{nn}\end{pmatrix}  \begin{bmatrix} x_1(t) \\ x_2(t) \\ x_3(t) \\ \vdots \\ x_n(t) \end{bmatrix}$$
+Si efectuamos la operación del producto de la matriz de inetracciones $\mathbf A$ con el vector columna de abundancias $\mathbf x$
+
+$$\mathbf r + \mathcal A \mathbf x = \begin{bmatrix} r_1 \\ r_2 \\ r_3 \\ \vdots \\ r_n \end{bmatrix} +  \begin{bmatrix}a_{11}x_1(t) + a_{12}x_2(t) + a_{13}x_3(t) + \ldots + a_{1n}x_n(t) \\a_{21}x_1(t) + a_{22}x_2(t) + a_{23}x_3(t) + \ldots + a_{2n}x_n(t) \\ a_{31}x_1(t) + a_{32}x_2(t) + a_{33}x_3(t) + \ldots + a_{3n}x_n(t) \\ \vdots  \\ a_{n1}x_1(t) + a_{n2}x_2(t) + a_{n3}x_3(t) + \ldots + a_{nn}x_n(t)\end{bmatrix} $$
+Finalmente sumamos ambos vectores columnas $\mathbf r$ y $\mathcal A \mathbf x$ tenemos:
+
+$$\mathbf r + \mathcal A \mathbf x =  \begin{bmatrix} r_1 + a_{11}x_1(t) + a_{12}x_2(t) + a_{13}x_3(t) + \ldots + a_{1n}x_n(t) \\ r_2 + a_{21}x_1(t) + a_{22}x_2(t) + a_{23}x_3(t) + \ldots + a_{2n}x_n(t)  \\ r_3  + a_{31}x_1(t) + a_{32}x_2(t) + a_{33}x_3(t) + \ldots + a_{3n}x_n(t) \\ \vdots \\ r_n +a_{n1}x_1(t) + a_{n2}x_2(t) + a_{n3}x_3(t) + \ldots + a_{nn}x_n(t)  \end{bmatrix}$$
+Finalmente hacemos el producto de la matriz $\mathcal D (\mathbf x)$ con el vector $\mathbf r + \mathcal A \mathbf x$
+
+
+$$\mathcal D (\mathbf x)(\mathbf r + \mathcal A \mathbf x) = \begin{pmatrix}x_1(t) & 0 & 0 & \ldots & 0 \\0 & x_2(t) & 0 & \ldots & 0 \\ \vdots & \vdots & \vdots & \vdots & \vdots \\ 0 & 0 & 0 & \ldots & x_n(t)\end{pmatrix} \begin{bmatrix} r_1 + a_{11}x_1(t) + a_{12}x_2(t) + a_{13}x_3(t) + \ldots + a_{1n}x_n(t) \\ r_2 + a_{21}x_1(t) + a_{22}x_2(t) + a_{23}x_3(t) + \ldots + a_{2n}x_n(t)  \\ r_3  + a_{31}x_1(t) + a_{32}x_2(t) + a_{33}x_3(t) + \ldots + a_{3n}x_n(t) \\ \vdots \\ r_n +a_{n1}x_1(t) + a_{n2}x_2(t) + a_{n3}x_3(t) + \ldots + a_{nn}x_n(t)  \end{bmatrix}$$
+
+Finalmente:
+
+$$ \begin{bmatrix} r_1x_1(t) + a_{11}x_1^2(t) + a_{12}x_2(t)x_1(t) + a_{13}x_3(t)x_1(t) + \ldots + a_{1n}x_n(t)x_1(t) \\ r_2x_2(t) + a_{21}x_1(t)x_2(t) + a_{22}x_2^2(t) + a_{23}x_3(t)x_2(t) + \ldots + a_{2n}x_n(t)x_2(t)  \\ r_3x_3(t)  + a_{31}x_1(t)x_3(t) + a_{32}x_2(t)x_3(t) + a_{33}x_3^2(t) + \ldots + a_{3n}x_n(t)x_3(t) \\ \vdots \\ r_nx_n(t) +a_{n1}x_1(t)x_n(t) + a_{n2}x_2(t)x_n(t) + a_{n3}x_3(t) + \ldots + a_{nn}x_n^2(t)  \end{bmatrix}$$
+
+
+## Para 1-D
+
+```{r}
+library(deSolve) # integrate ODEs
+library(tidyverse) # plotting and wrangling
+# define the differential equation
+logistic_growth <- function(t, x, parameters){
+  with(as.list(c(x, parameters)), {
+    dxdt <- x * (r + a * x)
+    list(dxdt)
+  })
+}
+# define parameters, integration time, initial conditions
+times <- seq(0, 100, by = 5)
+x0 <- 0.05
+r <- 0.1
+a <- -0.05
+parameters <- list(r = r, a = a)
+# solve numerically
+out <- ode(y = x0, times = times, 
+           func = logistic_growth, parms = parameters, 
+           method = "ode45")
+# now compute analytically
+solution <- r * x0 * exp(r * times) / (r - a * x0 * (exp(r * times) - 1))
+# use ggplot to plot
+res <- tibble(time = out[,1], x_t = out[,2], x_sol = solution)
+ggplot(data = res) + aes(x = time, y = x_t) + 
+  geom_line() + 
+  geom_point(aes(x = time, y = x_sol), colour = "red", shape = 2) + 
+  ylab(expression("x(t)")) + xlab(expression("t"))
+```
 
 
 ## Quarto
 
-Quarto enables you to weave together content and executable 😃code into a finished document. To learn more about Quarto see <https://quarto.org>.
+Quarto enables you to weave together content and executable 😃 code into a finished document. To learn more about Quarto see <https://quarto.org>.
 
 ## Running Code
 

@@ -105,27 +105,80 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="ecuación-lotka-volterra" class="level2">
 <h2 class="anchored" data-anchor-id="ecuación-lotka-volterra">Ecuación Lotka-Volterra</h2>
-</section>
-<section id="fracdx_idtr_ix_isum_j1na_ijx_ix_j-forall-i123ldots-n-fracdx_idtx_ir_isum_j1na_ijx_j-lotka-volterra-en-forma-vectorial" class="level2">
-<h2 class="anchored" data-anchor-id="fracdx_idtr_ix_isum_j1na_ijx_ix_j-forall-i123ldots-n-fracdx_idtx_ir_isum_j1na_ijx_j-lotka-volterra-en-forma-vectorial"><span class="math display">\[\frac{dx_i}{dt}=r_ix_i+\sum_{j=1}^nA_{ij}x_ix_j\]</span> <span class="math display">\[\forall i=1,2,3,\ldots n\]</span> <span class="math display">\[\frac{dx_i}{dt}=x_i(r_i+\sum_{j=1}^nA_{ij}x_j)\]</span> Lotka-Volterra en forma vectorial</h2>
+<p><span class="math display">\[\frac{dx_i}{dt}=r_ix_i+\sum_{j=1}^nA_{ij}x_ix_j\]</span> <span class="math display">\[\forall i=1,2,3,\ldots n\]</span> <span class="math display">\[\frac{dx_i}{dt}=x_i(r_i+\sum_{j=1}^nA_{ij}x_j)\]</span> ## Lotka-Volterra en forma vectorial</p>
 <p><span class="math display">\[\frac{d \mathbf x}{dt}=D(\mathbf {x})(\mathbf{r}+ \mathcal A\mathbf{x})\]</span></p>
-<p>con</p>
-<p><span class="math inline">\(\mathbf x(t)=(x_1(t),x_2(t),\ldots, x_n(t))\)</span></p>
+<p>con el vector de abundancias de las poblaciones</p>
+<p><span class="math inline">\(\mathbf x(t)=\begin{bmatrix} x_1(t) \\ x_2(t) \\ x_3(t) \\ \vdots \\ x_n(t) \end{bmatrix}\)</span></p>
 <p><span class="math inline">\(D(\mathbf {x})= \begin{pmatrix}x_1(t) &amp; 0 &amp; 0 &amp; \ldots &amp; 0 \\0 &amp; x_2(t) &amp; 0 &amp; \ldots &amp; 0 \\ \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots \\ 0 &amp; 0 &amp; 0 &amp; \ldots &amp; x_n(t)\end{pmatrix}\)</span></p>
 <p>El vector de tasas de crecimiento</p>
-<p><span class="math inline">\(\mathbf r=(r_1,r_2,\ldots, r_n)\)</span></p>
+<p><span class="math inline">\(\mathbf r=\begin{bmatrix} r_1 \\ r_2 \\ r_3 \\ \vdots \\ r_n \end{bmatrix}\)</span></p>
 <p>La matriz de interacciones</p>
 <p><span class="math inline">\(\mathcal A= \begin{pmatrix}a_{11} &amp; a_{12} &amp; a_{13} &amp; \ldots &amp; a_{1n} \\a_{21} &amp; a_{22} &amp; a_{23} &amp; \ldots &amp; a_{2n} \\ \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots \\ a_{n1} &amp; a_{n2} &amp; a_{n3} &amp; \ldots &amp; a_{nn}\end{pmatrix}\)</span></p>
 </section>
+<section id="demostración-de-ambas-ecuaciones" class="level2">
+<h2 class="anchored" data-anchor-id="demostración-de-ambas-ecuaciones">Demostración de ambas ecuaciones</h2>
+<p>Entonces la parte <span class="math inline">\(\mathbf r + \mathcal A \mathbf x\)</span> es un vector columna</p>
+<p><span class="math display">\[\mathbf r + \mathcal A \mathbf x= \begin{bmatrix} r_1 \\ r_2 \\ r_3 \\ \vdots \\ r_n \end{bmatrix} +  \begin{pmatrix}a_{11} &amp; a_{12} &amp; a_{13} &amp; \ldots &amp; a_{1n} \\a_{21} &amp; a_{22} &amp; a_{23} &amp; \ldots &amp; a_{2n} \\ \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots \\ a_{n1} &amp; a_{n2} &amp; a_{n3} &amp; \ldots &amp; a_{nn}\end{pmatrix}  \begin{bmatrix} x_1(t) \\ x_2(t) \\ x_3(t) \\ \vdots \\ x_n(t) \end{bmatrix}\]</span> Si efectuamos la operación del producto de la matriz de inetracciones <span class="math inline">\(\mathbf A\)</span> con el vector columna de abundancias <span class="math inline">\(\mathbf x\)</span></p>
+<p><span class="math display">\[\mathbf r + \mathcal A \mathbf x = \begin{bmatrix} r_1 \\ r_2 \\ r_3 \\ \vdots \\ r_n \end{bmatrix} +  \begin{bmatrix}a_{11}x_1(t) + a_{12}x_2(t) + a_{13}x_3(t) + \ldots + a_{1n}x_n(t) \\a_{21}x_1(t) + a_{22}x_2(t) + a_{23}x_3(t) + \ldots + a_{2n}x_n(t) \\ a_{31}x_1(t) + a_{32}x_2(t) + a_{33}x_3(t) + \ldots + a_{3n}x_n(t) \\ \vdots  \\ a_{n1}x_1(t) + a_{n2}x_2(t) + a_{n3}x_3(t) + \ldots + a_{nn}x_n(t)\end{bmatrix} \]</span> Finalmente sumamos ambos vectores columnas <span class="math inline">\(\mathbf r\)</span> y <span class="math inline">\(\mathcal A \mathbf x\)</span> tenemos:</p>
+<p><span class="math display">\[\mathbf r + \mathcal A \mathbf x =  \begin{bmatrix} r_1 + a_{11}x_1(t) + a_{12}x_2(t) + a_{13}x_3(t) + \ldots + a_{1n}x_n(t) \\ r_2 + a_{21}x_1(t) + a_{22}x_2(t) + a_{23}x_3(t) + \ldots + a_{2n}x_n(t)  \\ r_3  + a_{31}x_1(t) + a_{32}x_2(t) + a_{33}x_3(t) + \ldots + a_{3n}x_n(t) \\ \vdots \\ r_n +a_{n1}x_1(t) + a_{n2}x_2(t) + a_{n3}x_3(t) + \ldots + a_{nn}x_n(t)  \end{bmatrix}\]</span> Finalmente hacemos el producto de la matriz <span class="math inline">\(\mathcal D (\mathbf x)\)</span> con el vector <span class="math inline">\(\mathbf r + \mathcal A \mathbf x\)</span></p>
+<p><span class="math display">\[\mathcal D (\mathbf x)(\mathbf r + \mathcal A \mathbf x) = \begin{pmatrix}x_1(t) &amp; 0 &amp; 0 &amp; \ldots &amp; 0 \\0 &amp; x_2(t) &amp; 0 &amp; \ldots &amp; 0 \\ \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots \\ 0 &amp; 0 &amp; 0 &amp; \ldots &amp; x_n(t)\end{pmatrix} \begin{bmatrix} r_1 + a_{11}x_1(t) + a_{12}x_2(t) + a_{13}x_3(t) + \ldots + a_{1n}x_n(t) \\ r_2 + a_{21}x_1(t) + a_{22}x_2(t) + a_{23}x_3(t) + \ldots + a_{2n}x_n(t)  \\ r_3  + a_{31}x_1(t) + a_{32}x_2(t) + a_{33}x_3(t) + \ldots + a_{3n}x_n(t) \\ \vdots \\ r_n +a_{n1}x_1(t) + a_{n2}x_2(t) + a_{n3}x_3(t) + \ldots + a_{nn}x_n(t)  \end{bmatrix}\]</span></p>
+</section>
+<section id="para-1-d" class="level2">
+<h2 class="anchored" data-anchor-id="para-1-d">Para 1-D</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(deSolve) <span class="co"># integrate ODEs</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># plotting and wrangling</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the differential equation</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>logistic_growth <span class="ot">&lt;-</span> <span class="cf">function</span>(t, x, parameters){</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">as.list</span>(<span class="fu">c</span>(x, parameters)), {</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    dxdt <span class="ot">&lt;-</span> x <span class="sc">*</span> (r <span class="sc">+</span> a <span class="sc">*</span> x)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(dxdt)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># define parameters, integration time, initial conditions</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>times <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">5</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>x0 <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fl">0.1</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">0.05</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>parameters <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">r =</span> r, <span class="at">a =</span> a)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># solve numerically</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">ode</span>(<span class="at">y =</span> x0, <span class="at">times =</span> times, </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">func =</span> logistic_growth, <span class="at">parms =</span> parameters, </span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">method =</span> <span class="st">"ode45"</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># now compute analytically</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>solution <span class="ot">&lt;-</span> r <span class="sc">*</span> x0 <span class="sc">*</span> <span class="fu">exp</span>(r <span class="sc">*</span> times) <span class="sc">/</span> (r <span class="sc">-</span> a <span class="sc">*</span> x0 <span class="sc">*</span> (<span class="fu">exp</span>(r <span class="sc">*</span> times) <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># use ggplot to plot</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">time =</span> out[,<span class="dv">1</span>], <span class="at">x_t =</span> out[,<span class="dv">2</span>], <span class="at">x_sol =</span> solution)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> res) <span class="sc">+</span> <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> x_t) <span class="sc">+</span> </span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> x_sol), <span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">shape =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="st">"x(t)"</span>)) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="fu">expression</span>(<span class="st">"t"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Calculos_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
 <section id="quarto" class="level2">
 <h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
-<p>Quarto enables you to weave together content and executable 😃code into a finished document. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>.</p>
+<p>Quarto enables you to weave together content and executable 😃 code into a finished document. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>.</p>
 </section>
 <section id="running-code" class="level2">
 <h2 class="anchored" data-anchor-id="running-code">Running Code</h2>
 <p>When you click the <strong>Render</strong> button a document will be generated that includes both content and the output of embedded code. You can embed code like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
