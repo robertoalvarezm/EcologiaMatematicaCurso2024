@@ -1,0 +1,48 @@
+---
+title: "Cálculos"
+author: "Roberto Álvarez"
+format: html
+---
+
+## Ecuación Lotka-Volterra
+
+## $$\frac{dx_i}{dt}=r_ix_i+\sum_{j=1}^nA_{ij}x_ix_j$$ $$\forall i=1,2,3,\ldots n$$ $$\frac{dx_i}{dt}=x_i(r_i+\sum_{j=1}^nA_{ij}x_j)$$ Lotka-Volterra en forma vectorial
+
+$$\frac{d \mathbf x}{dt}=D(\mathbf {x})(\mathbf{r}+ \mathcal A\mathbf{x})$$
+
+con
+
+$\mathbf x(t)=(x_1(t),x_2(t),\ldots, x_n(t))$
+
+$D(\mathbf {x})= \begin{pmatrix}x_1(t) & 0 & 0 & \ldots & 0 \\0 & x_2(t) & 0 & \ldots & 0 \\ \vdots & \vdots & \vdots & \vdots & \vdots \\ 0 & 0 & 0 & \ldots & x_n(t)\end{pmatrix}$
+
+El vector de tasas de crecimiento
+
+$\mathbf r=(r_1,r_2,\ldots, r_n)$
+
+La matriz de interacciones
+
+$\mathcal A= \begin{pmatrix}a_{11} & a_{12} & a_{13} & \ldots & a_{1n} \\a_{21} & a_{22} & a_{23} & \ldots & a_{2n} \\ \vdots & \vdots & \vdots & \vdots & \vdots \\ a_{n1} & a_{n2} & a_{n3} & \ldots & a_{nn}\end{pmatrix}$
+
+
+
+## Quarto
+
+Quarto enables you to weave together content and executable 😃code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
