@@ -9,7 +9,7 @@ format:
     colorlinks: true
 ---
 
-## Ecuación Lotka-Volterra
+# Ecuación Lotka-Volterra
 
 $$\frac{dx_i}{dt}=r_ix_i+\sum_{j=1}^nA_{ij}x_ix_j$$ $$\forall i=1,2,3,\ldots n$$ $$\frac{dx_i}{dt}=x_i(r_i+\sum_{j=1}^nA_{ij}x_j)$$ \## Lotka-Volterra en forma vectorial
 
@@ -80,6 +80,41 @@ ggplot(data = res) + aes(x = time, y = x_t) +
   geom_point(aes(x = time, y = x_sol), colour = "red", shape = 2) + 
   ylab(expression("x(t)")) + xlab(expression("t"))
 ```
+
+
+## Para 2D
+
+La solución de co-existencia para el modelo Lotka-Volterra generalizado es la 
+siguiente:
+
+
+\begin{eqnarray}
+\frac{dx_1}{dt}=x_1(r_1 + ax_1 +bx_2)=0\\
+\frac{dx_2}{dt}=x_2(r_2 + cx_1 +dx_2)=0
+\end{eqnarray}
+
+Tendremos que encontrar las soluciones para $x-1$ y $x_2$ en términos de el vector
+de tasas de crecimiento $\mathbf r$ y de la matriz de interacciones $\mathcal A$
+
+**Tarea **
+
+Es decir debemos demostrar que las soluciones de co-existencia:
+
+\begin{eqnarray}
+\r_1 + ax_1 +bx_2=0\\
+\r_2 + cx_1 +dx_2=0
+\end{eqnarray}
+
+son iguales a las soluciones vectoriales.
+
+$$\mathbf x*=\begin{bmatrix} x_1* \\ x_2* \end{bmatrix}=\mathcal A^{-1}\begin{bmatrix} - r_1 \\ - r_2 \end{bmatrix}$$
+en dos dimensiones si una matriz $\mathcal A$ 
+
+$$\mathcal A= \begin{pmatrix}a & b \\  c & d \end{pmatrix}$$
+su inversa se calcula como: 
+
+
+$$\mathcal A^{-1}= \begin{pmatrix}d & -b \\ - c & a \end{pmatrix}\frac{1}{det(\mathcal A)}$$
 
 
 ## Dinámicas Lotka-Volterra
@@ -171,23 +206,85 @@ res_4 <- integrate_GLV(r_4, A_4, x0_4, maxtime = 500)
 ```
 
 
-## Quarto
+## Estabilidad de comunidades grandes
 
-Quarto enables you to weave together content and executable 😃 code into a finished document. To learn more about Quarto see <https://quarto.org>.
+Robert May (1973) propuso una forma de generar una matriz aleatoria de interacciones
 
-## Running Code
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
 
 ```{r}
-1 + 1
+build_May_normal <- function(n, C, d, sigma){
+  # fill the whole matrix
+  M <- matrix(rnorm(n * n, mean = 0, sd = sigma), n, n)
+  # remove connections 
+  M <- M * matrix(runif(n * n) <= C, n, n)
+  # set diagonals
+  diag(M) <- -d
+  return(M)
+}
 ```
 
-You can add options to executable code like this
+
+
 
 ```{r}
-#| echo: false
-2 * 2
+plot_eigenvalues <- function(M, prediction = NULL){
+  eig <- eigen(M, only.values = TRUE)$values
+  dt <- tibble(Real = Re(eig), Imaginary = Im(eig))
+  pl <- ggplot(dt) + aes(x = Real, y = Imaginary) + 
+    geom_point() + 
+    coord_equal() + 
+    geom_vline(xintercept = 0, colour = "red", linetype = 2)
+  if (is.null(prediction) == FALSE) {
+    pl <- pl + geom_vline(xintercept = prediction, colour = "black", linetype = 2)
+  }
+  show(pl)
+}
+set.seed(100) # for reproducibility
+# parameters
+n <- 500
+C <- 0.5
+d <- 10
+sigma <- 1
+M <- build_May_normal(n, C, d, sigma)
+#library(tidyr)
+plot_eigenvalues(M)
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+```{r}
+build_Allesina_Tang_normal <- function(n, C, d, sigma, rho){
+  # sample coefficients in pairs
+  pairs <- MASS::mvrnorm(n = n * (n-1) / 2,
+                         mu = c(0, 0),
+                         Sigma = sigma^2 * matrix(c(1, rho, rho, 1), 2, 2))
+  # build a completely filled matrix
+  M <- matrix(0, n, n)
+  M[upper.tri(M)] <- pairs[,1]
+  M <- t(M)
+  M[upper.tri(M)] <- pairs[,2]
+  # determine which connections to retain
+  Connections <- (matrix(runif(n * n), n, n) <= C) * 1 
+  Connections[lower.tri(Connections)] <- 0
+  diag(Connections) <- 0
+  Connections <- Connections + t(Connections)
+  M <- M * Connections
+  diag(M) <- -d
+  return(M)
+}
+```
+
+
+
+```{r}
+# parameters
+n <- 500
+C <- 0.5
+d <- 10
+sigma <- 1
+rho <- 0.4
+M <- build_Allesina_Tang_normal(n, C, d, sigma, rho)
+prediction <- sqrt(n * C * sigma^2) * (1 + rho) - d
+plot_eigenvalues(M, prediction)
+```
+
+
