@@ -103,8 +103,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="ecuación-lotka-volterra" class="level2">
-<h2 class="anchored" data-anchor-id="ecuación-lotka-volterra">Ecuación Lotka-Volterra</h2>
+<section id="ecuación-lotka-volterra" class="level1">
+<h1>Ecuación Lotka-Volterra</h1>
 <p><span class="math display">\[\frac{dx_i}{dt}=r_ix_i+\sum_{j=1}^nA_{ij}x_ix_j\]</span> <span class="math display">\[\forall i=1,2,3,\ldots n\]</span> <span class="math display">\[\frac{dx_i}{dt}=x_i(r_i+\sum_{j=1}^nA_{ij}x_j)\]</span> ## Lotka-Volterra en forma vectorial</p>
 <p><span class="math display">\[\frac{d \mathbf x}{dt}=D(\mathbf {x})(\mathbf{r}+ \mathcal A\mathbf{x})\]</span></p>
 <p>con el vector de abundancias de las poblaciones</p>
@@ -114,7 +114,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="math inline">\(\mathbf r=\begin{bmatrix} r_1 \\ r_2 \\ r_3 \\ \vdots \\ r_n \end{bmatrix}\)</span></p>
 <p>La matriz de interacciones</p>
 <p><span class="math inline">\(\mathcal A= \begin{pmatrix}a_{11} &amp; a_{12} &amp; a_{13} &amp; \ldots &amp; a_{1n} \\a_{21} &amp; a_{22} &amp; a_{23} &amp; \ldots &amp; a_{2n} \\ \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots \\ a_{n1} &amp; a_{n2} &amp; a_{n3} &amp; \ldots &amp; a_{nn}\end{pmatrix}\)</span></p>
-</section>
 <section id="demostración-de-ambas-ecuaciones" class="level2">
 <h2 class="anchored" data-anchor-id="demostración-de-ambas-ecuaciones">Demostración de ambas ecuaciones</h2>
 <p>Entonces la parte <span class="math inline">\(\mathbf r + \mathcal A \mathbf x\)</span> es un vector columna</p>
@@ -173,6 +172,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="Calculos_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+</section>
+<section id="para-2d" class="level2">
+<h2 class="anchored" data-anchor-id="para-2d">Para 2D</h2>
+<p>La solución de co-existencia para el modelo Lotka-Volterra generalizado es la siguiente:</p>
+<p><span class="math display">\[\begin{eqnarray}
+\frac{dx_1}{dt}=x_1(r_1 + ax_1 +bx_2)=0\\
+\frac{dx_2}{dt}=x_2(r_2 + cx_1 +dx_2)=0
+\end{eqnarray}\]</span></p>
+<p>Tendremos que encontrar las soluciones para <span class="math inline">\(x-1\)</span> y <span class="math inline">\(x_2\)</span> en términos de el vector de tasas de crecimiento <span class="math inline">\(\mathbf r\)</span> y de la matriz de interacciones <span class="math inline">\(\mathcal A\)</span></p>
+<p><strong>Tarea </strong></p>
+<p>Es decir debemos demostrar que las soluciones de co-existencia:</p>
+<p><span class="math display">\[\begin{eqnarray}
+\r_1 + ax_1 +bx_2=0\\
+\r_2 + cx_1 +dx_2=0
+\end{eqnarray}\]</span></p>
+<p>son iguales a las soluciones vectoriales.</p>
+<p><span class="math display">\[\mathbf x*=\begin{bmatrix} x_1* \\ x_2* \end{bmatrix}=\mathcal A^{-1}\begin{bmatrix} - r_1 \\ - r_2 \end{bmatrix}\]</span> en dos dimensiones si una matriz <span class="math inline">\(\mathcal A\)</span></p>
+<p><span class="math display">\[\mathcal A= \begin{pmatrix}a &amp; b \\  c &amp; d \end{pmatrix}\]</span> su inversa se calcula como:</p>
+<p><span class="math display">\[\mathcal A^{-1}= \begin{pmatrix}d &amp; -b \\ - c &amp; a \end{pmatrix}\frac{1}{det(\mathcal A)}\]</span></p>
 </section>
 <section id="dinámicas-lotka-volterra" class="level2">
 <h2 class="anchored" data-anchor-id="dinámicas-lotka-volterra">Dinámicas Lotka-Volterra</h2>
@@ -282,26 +300,82 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="quarto" class="level2">
-<h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
-<p>Quarto enables you to weave together content and executable 😃 code into a finished document. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>.</p>
+<section id="estabilidad-de-comunidades-grandes" class="level2">
+<h2 class="anchored" data-anchor-id="estabilidad-de-comunidades-grandes">Estabilidad de comunidades grandes</h2>
+<p>Robert May (1973) propuso una forma de generar una matriz aleatoria de interacciones</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>build_May_normal <span class="ot">&lt;-</span> <span class="cf">function</span>(n, C, d, sigma){</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># fill the whole matrix</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  M <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(n <span class="sc">*</span> n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> sigma), n, n)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># remove connections </span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  M <span class="ot">&lt;-</span> M <span class="sc">*</span> <span class="fu">matrix</span>(<span class="fu">runif</span>(n <span class="sc">*</span> n) <span class="sc">&lt;=</span> C, n, n)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># set diagonals</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">diag</span>(M) <span class="ot">&lt;-</span> <span class="sc">-</span>d</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(M)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>plot_eigenvalues <span class="ot">&lt;-</span> <span class="cf">function</span>(M, <span class="at">prediction =</span> <span class="cn">NULL</span>){</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  eig <span class="ot">&lt;-</span> <span class="fu">eigen</span>(M, <span class="at">only.values =</span> <span class="cn">TRUE</span>)<span class="sc">$</span>values</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  dt <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Real =</span> <span class="fu">Re</span>(eig), <span class="at">Imaginary =</span> <span class="fu">Im</span>(eig))</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  pl <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dt) <span class="sc">+</span> <span class="fu">aes</span>(<span class="at">x =</span> Real, <span class="at">y =</span> Imaginary) <span class="sc">+</span> </span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_equal</span>() <span class="sc">+</span> </span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="dv">2</span>)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.null</span>(prediction) <span class="sc">==</span> <span class="cn">FALSE</span>) {</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    pl <span class="ot">&lt;-</span> pl <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> prediction, <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">linetype =</span> <span class="dv">2</span>)</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">show</span>(pl)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">100</span>) <span class="co"># for reproducibility</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co"># parameters</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">500</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>C <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">build_May_normal</span>(n, C, d, sigma)</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="co">#library(tidyr)</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_eigenvalues</span>(M)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Calculos_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>build_Allesina_Tang_normal <span class="ot">&lt;-</span> <span class="cf">function</span>(n, C, d, sigma, rho){</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># sample coefficients in pairs</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  pairs <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">mvrnorm</span>(<span class="at">n =</span> n <span class="sc">*</span> (n<span class="dv">-1</span>) <span class="sc">/</span> <span class="dv">2</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">mu =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>),</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">Sigma =</span> sigma<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, rho, rho, <span class="dv">1</span>), <span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># build a completely filled matrix</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  M <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, n, n)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  M[<span class="fu">upper.tri</span>(M)] <span class="ot">&lt;-</span> pairs[,<span class="dv">1</span>]</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  M <span class="ot">&lt;-</span> <span class="fu">t</span>(M)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  M[<span class="fu">upper.tri</span>(M)] <span class="ot">&lt;-</span> pairs[,<span class="dv">2</span>]</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># determine which connections to retain</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  Connections <span class="ot">&lt;-</span> (<span class="fu">matrix</span>(<span class="fu">runif</span>(n <span class="sc">*</span> n), n, n) <span class="sc">&lt;=</span> C) <span class="sc">*</span> <span class="dv">1</span> </span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  Connections[<span class="fu">lower.tri</span>(Connections)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">diag</span>(Connections) <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>  Connections <span class="ot">&lt;-</span> Connections <span class="sc">+</span> <span class="fu">t</span>(Connections)</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>  M <span class="ot">&lt;-</span> M <span class="sc">*</span> Connections</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">diag</span>(M) <span class="ot">&lt;-</span> <span class="sc">-</span>d</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(M)</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># parameters</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">500</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>C <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>rho <span class="ot">&lt;-</span> <span class="fl">0.4</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">build_Allesina_Tang_normal</span>(n, C, d, sigma, rho)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>prediction <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(n <span class="sc">*</span> C <span class="sc">*</span> sigma<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">+</span> rho) <span class="sc">-</span> d</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_eigenvalues</span>(M, prediction)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Calculos_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 </section>
-<section id="running-code" class="level2">
-<h2 class="anchored" data-anchor-id="running-code">Running Code</h2>
-<p>When you click the <strong>Render</strong> button a document will be generated that includes both content and the output of embedded code. You can embed code like this:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
-</div>
-<p>You can add options to executable code like this</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
-</div>
-</div>
-<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
 </section>
 
 </main>

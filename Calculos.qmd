@@ -3,10 +3,10 @@ title: "Cálculos"
 author: "Roberto Álvarez"
 #format: html
 format:
-  pdf:
-    toc: true
-    number-sections: true
-    colorlinks: true
+ pdf:
+   toc: true
+   number-sections: true
+   colorlinks: true
 ---
 
 # Ecuación Lotka-Volterra
@@ -93,7 +93,7 @@ siguiente:
 \frac{dx_2}{dt}=x_2(r_2 + cx_1 +dx_2)=0
 \end{eqnarray}
 
-Tendremos que encontrar las soluciones para $x-1$ y $x_2$ en términos de el vector
+Tendremos que encontrar las soluciones para $x_1$ y $x_2$ en términos de el vector
 de tasas de crecimiento $\mathbf r$ y de la matriz de interacciones $\mathcal A$
 
 **Tarea **
@@ -101,8 +101,8 @@ de tasas de crecimiento $\mathbf r$ y de la matriz de interacciones $\mathcal A$
 Es decir debemos demostrar que las soluciones de co-existencia:
 
 \begin{eqnarray}
-\r_1 + ax_1 +bx_2=0\\
-\r_2 + cx_1 +dx_2=0
+r_1 + ax_1 +bx_2=0\\
+r_2 + cx_1 +dx_2=0
 \end{eqnarray}
 
 son iguales a las soluciones vectoriales.
