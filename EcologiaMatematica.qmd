@@ -82,3 +82,74 @@ format:
 ![](01_Images/science.2015.348.issue-6237.largecover.jpg)
 
 ## Modelos de consumidores de recursos de MacArthur
+
+## Early-Warnings
+
+### What is a critical transition?
+
+# ![](01_Images/figure1.png){width="350" height="500"} 
+
+# Why should we expect Early Warnings before Critical Transitions?
+
+# 
+![](01_Images/figure3.png){width=100%} 
+
+# Glossary I
+
+-   **Alternative stable states:** Different (multiple) states (equilibria) of a system under the same external conditions. The state to which a system converges is path-dependent.
+
+-   **Attractor:** The dynamic regime to which a system converges after some time. Examples of attractors: point, cyclic (periodic), quasiperiodic, chaotic
+
+-   **Basin of attraction:** Set of initial conditions that lead to a particular state (equilibrium).
+
+-   **Bifurcation:** A critical threshold in conditions at which the qualitative behavior of a system changes.
+
+# Glossary II
+
+-   **Bistability:** The case where two alternative stable states exist.
+
+-   **Catastrophic bifurcation:** Bifurcation where the current state of a system disappears and the system is forced to move to an alternative state.
+
+-   **Catastrophic shift:** An abrupt shift in the state of a system induced by a small perturbation that pushes the system across the border of the basin of attraction.
+
+# Glossary III
+
+-   **Critical transition:** Abrupt shift in the behavior of a system when certain parameters reach a threshold. Most pronounced example is a catastrophic bifurcation.
+
+-   **Critical slowing down:** The phenomenon that the return time of a disturbance back to equilibrium increases close to a bifurcation.
+
+# Glossary IV
+
+-   **Eigenvalue (dominant):** Maximum factor that expresses how much linearized deviations from equilibrium diverge in time. It approximates the recovery rate back to equilibrium after a perturbation.
+
+-   **Equilibrium.** The condition at which competing processes are balanced. At a stable equilibrium, a system returns to it upon a small perturbation. At an unstable equilibrium, a system moves away from it upon a small perturbation.
+
+# Glossary V
+
+-   **Fold bifurcation:** The threshold (in a parameter) at which a stable and an unstable equilibrium collide. It marks the disappearance of both equilibria.
+
+-   **Hysteresis:** In a bistable system, the system remains in its current state until it reaches a catastrophic bifurcation, at which point it shifts to an alternative state. Reversing the conditions causes the system to jump back only when it encounters another catastrophic bifurcation. The distance between these bifurcations defines the hysteresis size; a larger hysteresis makes it harder to reverse the shift.
+
+# Glossary VI
+
+-   **Leading indicators:** Divergence of the statistical properties in the pattern of fluctuations of a system close to a critical transition.
+
+-   **Positive feedback:** A process through which something has a positive effect on itself.
+
+-   **Regime shift:** A sharp change from one regime (state) to a contrasting one. A regime is a dynamic ‘state’ of a system: it can be a stable point or a cycle.
+
+# Glossary VII
+
+-   **Resilience (ecological):** The magnitude of disturbance a system can tolerate before it shifts into a different state.
+
+-   **Self-organized patterns.** Patterns in space that emerge from the interaction between many units.
+
+-   **Transition:** Discontinuous (first-order): Abrupt change in the qualitative behavior of a system. Continuous (second-order): Smooth change in the qualitative behavior of a system.
+
+-   **Noise-induced:** Change in the qualitative behavior of a system in the presence of high noise intensity.
+
+# Glossary IX
+
+-   **Threshold:** A point where the system is very sensitive to changing conditions.
+
+-   **Tipping point:** A point where the system may flip to another state.
